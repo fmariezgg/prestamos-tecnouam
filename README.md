@@ -3,6 +3,11 @@
 Aplicación web para gestionar el préstamo de equipos tecnológicos (examen integrador, Servicios Web, 2.º corte).
 Backend **Spring Boot + PostgreSQL**, seguridad **JWT** con roles `USER`/`ADMIN` y frontend **React + Axios**.
 
+## Autores
+
+- Marie
+- Andrés Castillo
+
 ## Arquitectura
 
 ```
@@ -136,7 +141,6 @@ backend/   Spring Boot (controller, service, repository, model, dto, security, e
 frontend/  React (src/components, src/services, src/hooks, src/utils)
 postman/   Colección y environment (sin secretos)
 evidencias/ Resultado de la ejecución con newman
-odd/       Registro de tareas del trabajo
 docker-compose.yml  PostgreSQL
 ```
 

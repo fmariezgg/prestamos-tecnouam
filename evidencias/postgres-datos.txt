@@ -1,0 +1,34 @@
+                  List of tables
+ Schema |         Name          | Type  |  Owner   
+--------+-----------------------+-------+----------
+ public | equipos               | table | tecnouam
+ public | flyway_schema_history | table | tecnouam
+ public | prestamos             | table | tecnouam
+ public | usuarios              | table | tecnouam
+(4 rows)
+
+ id | codigo_patrimonial |            nombre             |   tipo    |   estado   
+----+--------------------+-------------------------------+-----------+------------
+  1 | LAP-001            | Laptop Dell Latitude 5440     | LAPTOP    | DISPONIBLE
+  2 | LAP-002            | Laptop Lenovo ThinkPad E14    | LAPTOP    | PRESTADO
+  3 | LAP-003            | Laptop HP ProBook 450         | LAPTOP    | DISPONIBLE
+  4 | PRO-001            | Proyector Epson PowerLite X49 | PROYECTOR | DISPONIBLE
+  5 | PRO-002            | Proyector BenQ MS535          | PROYECTOR | DISPONIBLE
+  6 | TAB-001            | Tableta Samsung Galaxy Tab A9 | TABLETA   | DISPONIBLE
+  7 | TAB-002            | Tableta Apple iPad 10a gen    | TABLETA   | DISPONIBLE
+ 17 | LAP-004            | Laptop Acer Aspire 5          | LAPTOP    | DISPONIBLE
+(8 rows)
+
+ id | equipo_id | nombre_solicitante | fecha_prestamo | fecha_prevista_devolucion | fecha_devolucion_real |  estado  
+----+-----------+--------------------+----------------+---------------------------+-----------------------+----------
+  1 |         4 | Maria Lopez        | 2026-10-01     | 2026-10-05                | 2026-10-04            | DEVUELTO
+  2 |         2 | Carlos Ramirez     | 2026-10-20     | 2026-11-03                |                       | ACTIVO
+ 11 |        17 | Ana Torres         | 2026-10-29     | 2026-11-12                | 2026-10-28            | DEVUELTO
+(3 rows)
+
+ id | username |  rol  | password_hash 
+----+----------+-------+---------------
+  1 | admin    | ADMIN | $2a$10$…
+  2 | user     | USER  | $2a$10$…
+(2 rows)
+

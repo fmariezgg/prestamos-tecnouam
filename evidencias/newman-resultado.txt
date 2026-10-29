@@ -1,0 +1,160 @@
+newman
+
+TecnoUAM Préstamos
+
+Folder 0 Auth
+Sub-folder Login ADMIN (200)
+  POST http://localhost:8080/api/auth/login [200 OK, 691B, 138ms]
+  Pass  Status 200
+  Pass  Responde token JWT y rol
+
+Sub-folder Login USER (200)
+  POST http://localhost:8080/api/auth/login [200 OK, 687B, 93ms]
+  Pass  Status 200
+  Pass  Responde token JWT y rol
+
+Sub-folder Login credenciales incorrectas (401)
+  POST http://localhost:8080/api/auth/login [401 Unauthorized, 583B, 100ms]
+  Pass  Status 401
+  Pass  Cuerpo de error uniforme
+
+Folder 1 Alta de equipo
+Sub-folder Crear equipo (201)
+  POST http://localhost:8080/api/equipos [201 Created, 529B, 9ms]
+  Pass  Status 201
+  Pass  Equipo creado DISPONIBLE
+
+Folder 2 Consulta de equipos
+Sub-folder Listar equipos (200)
+  GET http://localhost:8080/api/equipos [200 OK, 1.33kB, 5ms]
+  Pass  Status 200
+  Pass  La lista incluye el equipo creado
+
+Sub-folder Obtener equipo por id (200)
+  GET http://localhost:8080/api/equipos/15 [200 OK, 524B, 5ms]
+  Pass  Status 200
+  Pass  Devuelve el equipo pedido
+
+Folder 3 Actualización
+Sub-folder Actualizar equipo (200)
+  PUT http://localhost:8080/api/equipos/15 [200 OK, 536B, 7ms]
+  Pass  Status 200
+  Pass  Nombre actualizado
+
+Folder 4 Registro de préstamo
+Sub-folder Registrar préstamo (201)
+  POST http://localhost:8080/api/prestamos [201 Created, 711B, 13ms]
+  Pass  Status 201
+  Pass  Préstamo ACTIVO sin devolución real
+
+Sub-folder Equipo pasó a PRESTADO (200)
+  GET http://localhost:8080/api/equipos/15 [200 OK, 534B, 5ms]
+  Pass  Status 200
+  Pass  Estado PRESTADO
+
+Folder 5 Préstamo duplicado
+Sub-folder Prestar de nuevo el mismo equipo (409)
+  POST http://localhost:8080/api/prestamos [409 Conflict, 581B, 5ms]
+  Pass  Status 409
+  Pass  Mensaje de conflicto
+
+Folder 6 Devolución
+Sub-folder Devolver préstamo (200)
+  PUT http://localhost:8080/api/prestamos/9/devolver [200 OK, 718B, 8ms]
+  Pass  Status 200
+  Pass  Préstamo DEVUELTO con fecha real
+
+Sub-folder Equipo vuelve a DISPONIBLE (200)
+  GET http://localhost:8080/api/equipos/15 [200 OK, 536B, 4ms]
+  Pass  Status 200
+  Pass  Estado DISPONIBLE
+
+Sub-folder Devolver otra vez (409)
+  PUT http://localhost:8080/api/prestamos/9/devolver [409 Conflict, 582B, 6ms]
+  Pass  Status 409
+
+Folder 7 Eliminación
+Sub-folder Eliminar equipo sin préstamo activo (204)
+  DELETE http://localhost:8080/api/equipos/15 [204 No Content, 371B, 9ms]
+  Pass  Status 204
+
+Sub-folder El equipo eliminado ya no existe (404)
+  GET http://localhost:8080/api/equipos/15 [404 Not Found, 574B, 4ms]
+  Pass  Status 404
+
+Sub-folder Preparar: crear equipo B (201)
+  POST http://localhost:8080/api/equipos [201 Created, 535B, 9ms]
+  Pass  Status 201
+
+Sub-folder Preparar: préstamo activo sobre equipo B (201)
+  POST http://localhost:8080/api/prestamos [201 Created, 706B, 10ms]
+  Pass  Status 201
+
+Sub-folder Eliminar equipo con préstamo activo (409)
+  DELETE http://localhost:8080/api/equipos/16 [409 Conflict, 598B, 6ms]
+  Pass  Status 409
+  Pass  Mensaje indica préstamos activos
+
+Sub-folder Limpieza: devolver préstamo B (200)
+  PUT http://localhost:8080/api/prestamos/10/devolver [200 OK, 713B, 8ms]
+  Pass  Status 200
+
+Sub-folder Limpieza: eliminar equipo B (204)
+  DELETE http://localhost:8080/api/equipos/16 [204 No Content, 371B, 9ms]
+  Pass  Status 204
+
+Folder 8 Seguridad
+Sub-folder GET sin token (401)
+  GET http://localhost:8080/api/equipos [401 Unauthorized, 589B, 1ms]
+  Pass  Status 401
+
+Sub-folder GET con token inválido (401)
+  GET http://localhost:8080/api/equipos [401 Unauthorized, 589B, 1ms]
+  Pass  Status 401
+
+Sub-folder GET con USER permitido (200)
+  GET http://localhost:8080/api/equipos [200 OK, 1.22kB, 7ms]
+  Pass  Status 200
+
+Sub-folder POST equipo con USER (403)
+  POST http://localhost:8080/api/equipos [403 Forbidden, 595B, 2ms]
+  Pass  Status 403
+  Pass  Cuerpo de error 403
+
+Folder 9 Validación y no encontrado
+Sub-folder Crear equipo inválido (400)
+  POST http://localhost:8080/api/equipos [400 Bad Request, 687B, 2ms]
+  Pass  Status 400
+  Pass  Incluye fieldErrors
+
+Sub-folder Préstamo con fechas inválidas (400)
+  POST http://localhost:8080/api/prestamos [400 Bad Request, 668B, 3ms]
+  Pass  Status 400
+
+Sub-folder Equipo inexistente (404)
+  GET http://localhost:8080/api/equipos/999999999 [404 Not Found, 588B, 5ms]
+  Pass  Status 404
+
+Sub-folder Préstamo sobre equipo inexistente (404)
+  POST http://localhost:8080/api/prestamos [404 Not Found, 580B, 7ms]
+  Pass  Status 404
+
+------------------------------------------------------------------
+|                         |          executed |           failed |
+--------------------------+-------------------+-------------------
+|              iterations |                 1 |                0 |
+--------------------------+-------------------+-------------------
+|                requests |                28 |                0 |
+--------------------------+-------------------+-------------------
+|            test-scripts |                28 |                0 |
+--------------------------+-------------------+-------------------
+|      prerequest-scripts |                 7 |                0 |
+--------------------------+-------------------+-------------------
+|              assertions |                43 |                0 |
+------------------------------------------------------------------
+| total run duration: 782ms                                      |
+------------------------------------------------------------------
+| total data received: 6.21kB (approx)                           |
+------------------------------------------------------------------
+| average response time: 17ms [min: 1ms, max: 138ms, s.d.: 33ms] |
+------------------------------------------------------------------

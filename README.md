@@ -5,7 +5,7 @@ Backend **Spring Boot + PostgreSQL**, seguridad **JWT** con roles `USER`/`ADMIN`
 
 ## Autores
 
-- Marie Fátima Zogaib
+- Fátima Zogaib
 - Andrés Castillo
 
 ## Arquitectura

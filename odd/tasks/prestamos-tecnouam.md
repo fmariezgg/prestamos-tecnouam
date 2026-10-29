@@ -12,7 +12,8 @@ Delivery: ask-on-risk; commits on feat/prestamos-fullstack; no push without user
 - [x] T4 SQL schema + seed (schema.sql / data) + backend tests - 328641a (tests, 23 green on H2), 4984387 (backend/sql); curl matrix verified against Dockerized Postgres
 - [x] T5 React frontend: Axios, useState/useEffect, login, table, loading/empty/error states (delegated writer) - 8091220 (build, lint, 5 Vitest green; dev server + CORS preflight verified)
 - [x] T6 Postman collection + README + evidence - cc3997f (collection; newman 28 req / 43 assertions / 0 failed), e3cdea0 (README)
-- [ ] T7 Run end-to-end verification (all 9 Reto-4 scenarios) and publish repo (needs user OK)
+- [x] T7a End-to-end verification: Postman web runner 28 req / 43 tests / 0 failed; UI (ADMIN + USER read-only) and PostgreSQL data captured in `evidencias/` - 84d8975 and next commit
+- [ ] T7b Publish repo (push/GitHub) - needs explicit user OK
 
 ## Route log
 T1 inline; T2-T4 delegated writer (mandatory writer trigger); T5-T6 delegated writer.

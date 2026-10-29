@@ -10,8 +10,8 @@ Delivery: ask-on-risk; commits on feat/prestamos-fullstack; no push without user
 - [x] T2 Backend: entities Equipo/Prestamo, repos, services, controllers, DTOs, validation, exception handler, business rules (delegated writer) - c57e82c
 - [x] T3 Security: JWT login, stateless, USER/ADMIN roles, 401/403 handlers (delegated writer) - c57e82c
 - [x] T4 SQL schema + seed (schema.sql / data) + backend tests - 328641a (tests, 23 green on H2), 4984387 (backend/sql); curl matrix verified against Dockerized Postgres
-- [ ] T5 React frontend: Axios, useState/useEffect, login, table, loading/empty/error states (delegated writer)
-- [ ] T6 Postman collection + README + evidence
+- [x] T5 React frontend: Axios, useState/useEffect, login, table, loading/empty/error states (delegated writer) - 8091220 (build, lint, 5 Vitest green; dev server + CORS preflight verified)
+- [x] T6 Postman collection + README + evidence - cc3997f (collection; newman 28 req / 43 assertions / 0 failed), e3cdea0 (README)
 - [ ] T7 Run end-to-end verification (all 9 Reto-4 scenarios) and publish repo (needs user OK)
 
 ## Route log

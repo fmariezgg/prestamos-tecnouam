@@ -1,0 +1,20 @@
+services:
+  db:
+    image: postgres:18-alpine
+    container_name: tecnouam-db
+    environment:
+      POSTGRES_DB: ${DB_NAME:-tecnouam}
+      POSTGRES_USER: ${DB_USER:-tecnouam}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:?Set DB_PASSWORD in .env}
+    ports:
+      - "${DB_PORT:-5432}:5432"
+    volumes:
+      - tecnouam-data:/var/lib/postgresql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-tecnouam} -d ${DB_NAME:-tecnouam}"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+volumes:
+  tecnouam-data:
